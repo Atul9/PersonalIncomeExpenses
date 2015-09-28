@@ -1,0 +1,11 @@
+= simple_form_for @expense_category, html: {class: 'form-horizontal'}, wrapper: :horizontal_form, remote: true do |f|
+  .modal-body
+    = f.input :expense_source
+    = f.input :description
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary', id: 'save_expense_category'
+    %button.btn.btn-default{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+:coffeescript
+  $('#save_expense_category').click ->
+    $('#category-modal').modal('hide')
+    window.location.reload()

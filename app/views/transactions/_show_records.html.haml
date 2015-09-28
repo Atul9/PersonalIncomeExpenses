@@ -1,0 +1,7 @@
+- @transactions.each do |transaction|
+  %tr
+    %td= link_to particulars(transaction), edit_income_path(transaction.recordable), remote: true
+    %td= transaction.transaction_date.try(:strftime, "%d-%m-%Y")
+    %td= transaction.recordable.amount if transaction.recordable_type == "Expense"
+    %td= transaction.recordable.amount if transaction.recordable_type == "Income"
+

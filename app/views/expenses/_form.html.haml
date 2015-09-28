@@ -1,0 +1,17 @@
+= simple_form_for @expense, html: {class: 'form-horizontal'}, default: {input_html: 'form-control'}, wrapper: :horizontal_form, remote: true do |f|
+  .modal-body
+    = f.input :record_date, as: :string
+    = f.input :expense_category_id, collection: ExpenseCategory.user_expense_categories(current_user), include_blank: false
+    = f.input :amount
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary', id: 'save_expense'
+    = link_to 'Cancel', '#', class: 'btn btn-danger', data: {dismiss: 'modal'}
+:coffeescript
+  $('#expense_record_date').datepicker
+    startDate: new Date(2014, 12, 1)
+    endDate: '+0d'
+    format: 'dd-mm-yyyy'
+  $('#save_expense').click ->
+    $('#expense-modal').modal('hide')
+    window.location.reload()
+

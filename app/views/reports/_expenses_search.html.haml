@@ -1,0 +1,12 @@
+- param = params[:search] || {}
+= simple_form_for :search, url: expenses_reports_path, html: {id: 'serach_expenses', class: 'form-horizontal'}, wrapper: :horizontal_form do |f|
+  .well
+    .col-md-4
+      = f.input :expenses_category_id, collection: ExpenseCategory.user_expense_categories(current_user), include_blank: false, selected: param[:expense_category_id]
+    .col-md-3
+      = f.input :start_date, as: :string, input_html: {class: 'form-control date', data: {behaviour: "datepicker"}, value: param['start_date']}
+    .col-md-3
+      = f.input :end_date, as: :string, input_html: {value: param['end_date']}
+    .col-md-2
+    .mid-form
+      = f.submit 'Search', class: 'btn btn-primary push-down', id: 'expenses_search'

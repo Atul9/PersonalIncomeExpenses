@@ -1,0 +1,17 @@
+= simple_form_for @income, html: {class: 'form-horizontal'}, default: {input_html: 'form-control'}, wrapper: :horizontal_form, remote: true do |f|
+  .modal-body
+    = f.input :record_date, as: :string, input_html: {class: 'col-md-2'}
+    = f.input :income_category_id, collection: IncomeCategory.user_income_categories(current_user), include_blank: false
+    = f.input :amount
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary', id: 'save_income'
+    = link_to 'Cancel', incomes_path, class: 'btn btn-danger', data: {dismiss: 'modal'}
+:coffeescript
+  $('#income_record_date').datepicker
+    startDate: new Date(2014, 12, 1)
+    endDate: '+0d'
+    format: 'dd-mm-yyyy'
+    autoclose: true
+  $('#save_income').click ->
+    $('#income-modal').modal('hide')
+    window.location.reload()

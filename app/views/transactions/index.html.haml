@@ -1,0 +1,37 @@
+- param = params[:search] || {}
+%center
+  .well.well-sm
+    = link_to 'New Income', new_income_path, remote: true, class: 'btn btn-primary',id: 'new_income'
+    = link_to 'New Expense', new_expense_path, remote: true, class: 'btn btn-primary', id: 'new_expense'
+    = link_to 'New Income Category', new_income_category_path, remote: true, class: 'btn btn-primary', id:'new_income_category'
+    = link_to 'New Expense Category', new_expense_category_path, remote: true, class: 'btn btn-primary', id: 'new_expense_category'
+  .well.well-md
+    .panel.panel-heading
+      %b Transaction Search
+    = simple_form_for :search, url: transactions_path, method: :get, html: {id: 'search_transactions', class: 'form-horizontal form-inline'}, wrapper: :horizontal_form do |f|
+      = f.input :start_date, as: :string, input_html: {class: 'form-control date', data: {behaviour: 'datepicker'}, value: param[:start_date]}
+      = f.input :end_date, as: :string, input_html: {class: 'form-control date', data: {behaviour: 'datepicker'}, value: param[:end_date]}
+      %br
+      %br
+      = f.submit 'Search', class: 'btn btn-primary', id: 'transaction_search'
+%br
+%center
+  %h3 Transactions
+%table#transactions{border: 2}
+  %thead
+    %th Praticulars
+    %th Date
+    %th Debit
+    %th Credit
+  %tbody.show-records
+    = render 'show_records'
+
+.modal.fade#income-modal
+  .modal-dialog
+    .modal-content#inner-income-modal
+.modal.fade#expense-modal
+  .modal-dialog
+    .modal-content#inner-expense-modal
+.modal.fade#category-modal
+  .modal-dialog
+    .modal-content#inner-category-modal

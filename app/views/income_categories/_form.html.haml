@@ -1,0 +1,11 @@
+= simple_form_for @income_category, html: {class: 'form-horizontal'}, wrapper: :horizontal_form, remote: true do |f|
+  .modal-body
+    = f.input :income_source
+    = f.input :description
+  .modal-footer
+    = f.submit 'Save', class: 'btn btn-primary', id: 'save_income_category'
+    = link_to 'Cancel','#', class: 'btn btn-danger', data: {dismiss: 'modal'}
+:coffeescript
+  $('#save_income_category').click ->
+    $('#category-modal').modal('hide')
+    window.location.reload()

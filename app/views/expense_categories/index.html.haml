@@ -1,0 +1,16 @@
+%center
+  .well.well-sm
+    = link_to 'New Expense Category', new_expense_category_path, remote: true, class: 'btn btn-primary', id: 'new_expense_category'
+  %h3 Expense Categories
+%table#expense_categories{border: 2}
+  %thead
+    %th Expense Source
+    %th Action
+  %tbody
+    - @expense_categories.each do |category|
+      %tr
+        %td= category.expense_source
+        %td= link_to "", edit_expense_category_path(category), remote: true,class: 'btn glyphicon glyphicon-edit'
+.modal.fade#category-modal
+  .modal-dialog
+    .modal-content#inner-category-modal

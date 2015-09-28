@@ -1,0 +1,16 @@
+%center
+  .well.well-sm
+    = link_to 'New Income Category', new_income_category_path, remote: true, class: 'btn btn-primary', id:'new_income_category'
+  %h3 Income Categories
+  %table#income_categories{border: 2}
+    %thead
+      %th Income Source
+      %th Action
+    %tbody.income-categories
+      - @income_categories.each do |category|
+        %tr
+          %td= category.income_source
+          %td= link_to "", edit_income_category_path(category), remote: true, class: 'btn glyphicon glyphicon-edit'
+.modal.fade#category-modal
+  .modal-dialog
+    .modal-content#inner-category-modal
