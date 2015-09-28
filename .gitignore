@@ -11,3 +11,5 @@
 /log/*
 !/log/.keep
 /tmp
+# Ignore all test-related files
+/coverage
