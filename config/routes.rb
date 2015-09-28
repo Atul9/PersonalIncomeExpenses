@@ -1,4 +1,19 @@
 Rails.application.routes.draw do
+  devise_for :users
+  authenticated :user do
+    root to: 'transactions#index', as: :authenticated_root
+  end
+  root 'dashboard#index'
+  resources :incomes
+  resources :expenses
+  resources :transactions
+  resources :income_categories
+  resources :expense_categories
+  resources :reports, only: [] do
+    collection do
+      match :expenses, via: [:get, :post]
+    end
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
