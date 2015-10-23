@@ -3,6 +3,7 @@ class Expense < ActiveRecord::Base
   belongs_to :user
   belongs_to :expense_category
   validates_presence_of :record_date, :amount, :user_id, :expense_category_id
+  validates :amount, numericality: {only_foat: true}
   after_create :create_transaction
   after_update :update_transaction
 
