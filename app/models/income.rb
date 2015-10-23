@@ -3,6 +3,7 @@ class Income < ActiveRecord::Base
   belongs_to :user
   has_one :transaction_record, class_name: 'Transaction', as: :recordable
   validates_presence_of :income_category_id, :amount, :user_id, :record_date
+  validates :amount, numericality: {ony_float: true}
   after_create :create_transaction
   after_update :update_transaction
 
